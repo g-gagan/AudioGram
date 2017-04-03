@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>AudioGram</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script type = "text/javascript" src="js/jquery.js"></script>
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script>
+
+    $("document").ready(init);
+
+    function init()
+    {
+        //Img1's info is in t1.txt
+        $("#pfimg1,#pfimg2,#pfimg3,#pfimg4,#pfimg5").mouseover(getInfo); 
+
+        //Hide Info div initially
+        $("info").css({'visiblity':'hidden'});
+
+        //Hide info div after moving out of that block
+		$("#portfolio").mouseout(hideInfo);   
+    }
+
+    function getInfo()
+    {
+    	$("#info").css({'visiblity':'visible'});
+        imgId = this.id;
+        imgToText = imgId[imgId.length-1];
+        $.get("php/imgInfo.php?tfile=t" + imgToText + ".txt", addInfo);
+    }
+
+    function hideInfo()
+    {
+    	$("#info").css({'visiblity':'hidden'});
+    }
+
+
+    function addInfo(data)
+    {
+    	val = data.split(',');
+        $("#pfname").html(val[0]);
+        $("#pfsong").html(val[1]);
+        $("#pftype").html(val[2]);
+    }
+
+	function showreg(){
+		siginheader = document.getElementById("signinheader");
+		sigupheader = document.getElementById("signupheader");
+		sigin = document.getElementById("signindiv");
+		sigup = document.getElementById("signupdiv");
+		siginheader.style=" display:none;";
+		sigupheader.style=" display:block;";
+		sigin.style=" display:none;";
+		sigup.style=" display:block;";
+		navsig= document.getElementById("navsign");
+		navsign.innerHTML="Register";
+		}
+		function showsign(){
+		siginheader = document.getElementById("signinheader");
+		sigupheader = document.getElementById("signupheader");
+		sigin = document.getElementById("signindiv");
+		sigup = document.getElementById("signupdiv");
+		siginheader.style=" display:block;";
+		sigupheader.style=" display:none;";
+		sigin.style=" display:block;";
+		sigup.style=" display:none;";
+		navsig= document.getElementById("navsign");
+		navsign.innerHTML="SIGN IN";
+		}
+</script>
+</head>
+
+<body id="page-top" class="index">
+<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">AudioGram</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact" id="navsign">Sign in</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Top Artists</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">Team</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container" id="maincontent" tabindex="-1">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive img-circle" src="img/1.gif" alt="Cannot Load" width = "40%" height = "40%">
+                    <div class="intro-text">
+                        <h1 class="name">Enter the World of Music</h1>
+                        <hr class="star-light">
+                        <span class="skills">Singers - Admirers - Enthusiasts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Top Artists of the Week</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 portfolio-item" id="pfimg1">
+                    <a href="#1" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/1.jpg" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item" id="pfimg2">
+                    <a href="#2" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/2.jpg" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item" id="pfimg3">
+                    <a href="#3" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/3.jpg" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item" id="pfimg4">
+                    <a href="#4" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/4.jpg" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item" id = "info" style="color: white; background-color: #ea4d38;">
+                	<br>
+                    <p><label>Name :&nbsp;&nbsp;&nbsp;</label><span id = "pfname"></span></p>
+                    <p><label>Song :&nbsp;&nbsp;&nbsp;</label><span id = "pfsong"></span></p>
+                    <p><label>Type :&nbsp;&nbsp;&nbsp;</label><span id = "pftype"></span></p>
+                </div>
+                <div class="col-sm-4 portfolio-item" id="pfimg5">
+                    <a href="#6" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/6.jpg" class="img-responsive" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="success">
+        <div class="container">
+            <div class="row">
+				<div class="col-lg-12 text-center" id="signinheader" >
+                    <h2>Sign In</h2>
+                    <hr class="star-light">
+                </div>
+                <div class="col-lg-12 text-center" id = "signupheader" style = "display:none;">
+                    <h2>Register</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" id="signindiv">
+                    <form name="signIn" id="signIn" novalidate>
+                        <div class="row">
+							<!-- <div class = "col-md-4"></div> -->
+                            <div class="center-block" style="width:500px;">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your ID *" id="id" required data-validation-required-message="Please enter valid ID.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Your Password *" id="pwd" required data-validation-required-message="Please enter correct password.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+							<!--<div class = "col-md-4"></div>-->
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-danger">Sign In</button>
+                            </div>
+                            </div>
+                            </br>
+							<div class="text-center" id="linkforreg">
+								<p> Not yet a member?</p>
+                                <a href="javascript:;" onclick = "showreg();" style="color:black;">Sign Up!</a>
+							</div>
+                        </div>
+                    </form>
+                </div>
+				
+				<div class="col-lg-12" id="signupdiv" style="display:none;">
+                    <form name="signUp" id="signUp" novalidate action="bioDetails.html">
+                        <div class="row">
+                            <div class="center-block" style="width:500px;">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your ID *" id="id" required data-validation-required-message="Please enter valid ID.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Your Password *" id="pwd" required data-validation-required-message="Please enter correct password.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+								<div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email Id *" id="eid" required data-validation-required-message="Please enter valid Email ID.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+								<div class="form-group">
+                                    <textarea class="form-control" placeholder="Your Bio *" id="message" required data-validation-required-message="Please enter your Bio."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btn btn-danger">Register</button>
+                            </div>
+                            </br>
+							<div class="text-center" id="linkforsign">
+								<p>Already a member?</p>
+                                <a href="javascript:;" onclick = "showsign();" style="color:black;">Log In!</a>
+							</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
+	<section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Our Team</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 text-center">
+					<img src="img/team/1.jpg" class="img-responsive img-circle" alt="" style = "display:block;margin:auto;width:80%;height:80%;">
+                    <h4>Gagan. G</h4>
+					<p class="text-muted">Computer Science.</p>
+                </div>
+                <div class="col-lg-4 text-center">
+					<img src="img/team/2.jpg" class="img-responsive img-circle" alt="" style = "display:block;margin:auto;width:80%;height:80%;">
+                    <h4>Ganesh. K</h4>
+					<p class="text-muted">Computer Science.</p>
+                </div>
+                <div class="col-lg-4 text-center">
+					<img src="img/team/3.jpg" class="img-responsive img-circle" alt="" style = "display:block;margin:auto;width:80%;height:80%;">
+                    <h4>Gautham. J.P</h4>
+					<p class="text-muted">Computer Science.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>PES Univerity
+                            <br>Bengaluru, India</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Google Plus</span><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Linked In</span><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Dribble</span><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>About AudioGram</h3>
+                        <p>AudioGram is a platform for music enthusiasts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Audiogram.com 2017
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/freelancer.min.js"></script>
+
+</body>
+
+</html>
